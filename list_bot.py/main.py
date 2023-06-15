@@ -1,5 +1,5 @@
 import telebot, mysql.connector; #разобраться с регистрацией пользователя
-from random import randint
+from random import randint #ЗАЛУПА
 from mysql.connector import Error
 from telebot import types
 bot = telebot.TeleBot('6210050644:AAF4wzzj9c9bQ5sQNLKLQLhptyNKm6zb7iM');
