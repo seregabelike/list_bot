@@ -1,6 +1,4 @@
 import telebot, mysql.connector; #разобраться с регистрацией пользователя
-from random import randint 
-from mysql.connector import Error
 from telebot import types
 bot = telebot.TeleBot('6210050644:AAF4wzzj9c9bQ5sQNLKLQLhptyNKm6zb7iM');
 #Вот тут начало кода бота==================================================
@@ -11,7 +9,7 @@ btn2 = types.KeyboardButton("Дополнить список")
 btn3 = types.KeyboardButton("Уменьшить список")
 markup.add(btn1)
 markup.add(btn2)
-markup.add( btn3)
+markup.add(btn3)
 #ВСЕ ФУНЦИИ В БОТЕ!!!
 
 #ФУНКЦИЯ ДЛЯ ВЫВОДА СОДЕРЖИМОГО СПИСКА##################################################################################
@@ -65,7 +63,6 @@ def delete_product(message):
         for x in del_array:
             try:
                 del_product_query = "DELETE FROM `list_table` WHERE `user_id`='" + str(message.from_user.id) + "' AND `product_name`='" +str(list_array[int(x)-1]) + "'"
-                print(del_product_query)
                 connection.cursor().execute(del_product_query)
                 connection.commit()
                 connection.close()
@@ -125,7 +122,6 @@ def get_text_messages(message):
 
 #УДАЛЕНИЕ ПРОДУКТА
     elif(message.text).lower()=="уменьшить список":
-        print("уменьшаем список")
         bot.send_message(message.chat.id, text="Выбери пункты которые хочешь удалить")
         bot.register_next_step_handler(message, delete_product)
 
