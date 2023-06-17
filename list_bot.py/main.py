@@ -128,7 +128,7 @@ def get_text_messages(message):
 
 #ТАКИХ КОМАНД МЫ НЕ ЗНАЕМ
     else:
-        bot.send_message(message.chat.id, text="Увы, такой команды я не знаю.\n Попробуй эти👇",reply_markup=markup)
+        bot.send_message(message.chat.id, text="Увы, такой команды я не знаю.\nПопробуй эти👇",reply_markup=markup)
 
 
 bot.infinity_polling()
