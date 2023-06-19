@@ -64,10 +64,10 @@ def delete_product(message):
             try:
                 del_product_query = "DELETE FROM `list_table` WHERE `user_id`='" + str(message.from_user.id) + "' AND `product_name`='" +str(list_array[int(x)-1]) + "'"
                 connection.cursor().execute(del_product_query)
-                connection.commit()
-                connection.close()
             except:
                 print("такого пункта нет")
+        connection.commit()
+        connection.close()
         try:
             show_list(message)
         except:
