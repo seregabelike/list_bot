@@ -27,11 +27,12 @@ def show_list(message):
             list_array += x
         for punkt in list_array:
             num += 1
-            lists += (str(num) + ") " + punkt.title()) + "\n"
+            lists += (str(num) + ") " + punkt.capitalize()) + "\n"
         if len(lists) == 0:
             bot.send_message(message.chat.id, text="Список пуст")
         else:
             bot.send_message(message.chat.id, text="В списке сейчас:\n" + str(lists), reply_markup=markup)
+    connection.close()
 ########################################################################################################################
 #ФУНКЦИЯ ДЛЯ ЗАПОЛНЕНИЯ СПИСКА
 def add_product(message):
@@ -41,6 +42,7 @@ def add_product(message):
         create_user_query = "INSERT INTO `list_table` (`user_id`, `product_name`) VALUES ('" + str(message.from_user.id) + " ', '" + str(product.lower()) + "');"
         connection.cursor().execute(create_user_query)
         connection.commit()
+        connection.close()
         try:
             show_list(message)
         except:
