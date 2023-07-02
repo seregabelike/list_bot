@@ -20,6 +20,8 @@ def show_list(message):
     with connection.cursor() as cursor:
         cursor.execute(look_list_query)
         result = cursor.fetchall()
+        connection.commit()
+        connection.close()
         list_array = []
         num = 0
         lists = ""
@@ -32,7 +34,6 @@ def show_list(message):
             bot.send_message(message.chat.id, text="Список пуст")
         else:
             bot.send_message(message.chat.id, text="В списке сейчас:\n" + str(lists), reply_markup=markup)
-    connection.close()
 ########################################################################################################################
 #ФУНКЦИЯ ДЛЯ ЗАПОЛНЕНИЯ СПИСКА
 def add_product(message):
@@ -101,6 +102,7 @@ def start_message(message):
             cursor.execute(examination_user_query)
             result = cursor.fetchone()
             username=result[2]
+            connection.commit()
             connection.close()
             bot.send_message(message.chat.id,text="Привет, "+username+"!\nНапомню тебе о своих возможностях, я умею:\n1)Просматривать списки;\n2)Дополнять списки;\n3)Уменьшать списки.")
             bot.send_message(message.chat.id,text="Что ты хочешь сделать?",reply_markup=markup)
