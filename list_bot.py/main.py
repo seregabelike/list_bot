@@ -15,7 +15,7 @@ markup.add(btn3)
 #ФУНКЦИЯ ДЛЯ ВЫВОДА СОДЕРЖИМОГО СПИСКА##################################################################################
 #def request_in_base в разработке
 def show_list(message):
-    connection = mysql.connector.connect(user='admin', password='S3re_gg_A22!', host='127.0.0.1', database='list_bot')
+    connection = mysql.connector.connect(user='admin', password='pass', host='127.0.0.1', database='list_bot')
     look_list_query = "SELECT `product_name` FROM `list_table` WHERE `user_id`='" + str(message.from_user.id) + "'"
     with connection.cursor() as cursor:
         cursor.execute(look_list_query)
@@ -39,7 +39,7 @@ def show_list(message):
 def add_product(message):
     product=message.text
     try:
-        connection = mysql.connector.connect(user='admin', password='S3re_gg_A22!', host='127.0.0.1', database='list_bot')
+        connection = mysql.connector.connect(user='admin', password='pass', host='127.0.0.1', database='list_bot')
         create_user_query = "INSERT INTO `list_table` (`user_id`, `product_name`) VALUES ('" + str(message.from_user.id) + " ', '" + str(product.lower()) + "');"
         connection.cursor().execute(create_user_query)
         connection.commit()
@@ -53,7 +53,7 @@ def add_product(message):
 #ФУНКЦИЯ ДЛЯ УДАЛЕНИЯ ПРОДУКТА##########################################################################################
 def delete_product(message):
     product_num=message.text
-    connection = mysql.connector.connect(user='admin', password='S3re_gg_A22!', host='127.0.0.1', database='list_bot')
+    connection = mysql.connector.connect(user='admin', password='pass', host='127.0.0.1', database='list_bot')
     look_list_query = "SELECT `product_name` FROM `list_table` WHERE `user_id`='" + str(message.from_user.id) + "'"
     try:
         list_array = []
@@ -79,7 +79,7 @@ def delete_product(message):
         print("ERROR DELETE")
 #ФУНКЦИЯ ДЛЯ РЕГИСТРАЦИИ ПОЛЬЗОВАТЕЛЕЙ##################################################################################
 def user_reg(message):
-    connection = mysql.connector.connect(user='admin', password='S3re_gg_A22!', host='127.0.0.1', database='list_bot')
+    connection = mysql.connector.connect(user='admin', password='pass', host='127.0.0.1', database='list_bot')
     user_id = message.from_user.id
     username = message.text
     create_user_query = "INSERT INTO `name_table` (`user_id`, `user_name`) VALUES ('"+ str(user_id) +" ', '"+ str(username) +"');"
@@ -95,7 +95,7 @@ def user_reg(message):
 
 @bot.message_handler(commands=['start', 'help'])
 def start_message(message):
-    connection = mysql.connector.connect(user='admin', password='S3re_gg_A22!', host='127.0.0.1', database='list_bot')
+    connection = mysql.connector.connect(user='admin', password='pass', host='127.0.0.1', database='list_bot')
     examination_user_query="SELECT * FROM `name_table` where `user_id`='"+str(message.from_user.id)+"'"
     try:
         with connection.cursor() as cursor:
